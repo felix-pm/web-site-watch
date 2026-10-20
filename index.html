@@ -164,10 +164,42 @@
                 >Ventes réalisées</a
               >
             </li>
-            <li>
+            <li class="nav-drop">
               <a class="nav-link" href="contact.html" data-i18n="nav.contact"
                 >Contact</a
               >
+              <button
+                class="nav-drop-toggle"
+                type="button"
+                aria-expanded="false"
+                aria-controls="nav-drop-contact"
+                aria-label="Afficher les options vendre et trouver"
+                data-i18n-attr="aria-label:a11y.dropToggle"
+              ></button>
+              <div class="nav-drop-panel" id="nav-drop-contact">
+                <a class="nav-drop-item" href="vendre.html">
+                  <span class="nav-drop-title" data-i18n="cta.sell"
+                    >Vendre ma montre</span
+                  >
+                  <span class="nav-drop-desc" data-i18n="nav.sellDesc"
+                    >Première estimation et formule adaptée</span
+                  >
+                </a>
+                <a class="nav-drop-item" href="trouver.html">
+                  <span class="nav-drop-title" data-i18n="cta.find"
+                    >Trouver une montre</span
+                  >
+                  <span class="nav-drop-desc" data-i18n="nav.findDesc"
+                    >Recherche dans notre réseau</span
+                  >
+                </a>
+                <a
+                  class="nav-drop-foot"
+                  href="contact.html"
+                  data-i18n="nav.contactAll"
+                  >Téléphone, WhatsApp ou e-mail →</a
+                >
+              </div>
             </li>
           </ul>
         </nav>

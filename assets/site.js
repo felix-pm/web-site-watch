@@ -73,6 +73,10 @@ const EN = {
   'nav.contact': `Contact`,
   'cta.sell': `Sell my watch`,
   'cta.find': `Find a watch`,
+  'nav.sellDesc': `Initial valuation and the right arrangement`,
+  'nav.findDesc': `We search our network for you`,
+  'nav.contactAll': `Phone, WhatsApp or email →`,
+  'a11y.dropToggle': `Show sell and find options`,
 
   // Accueil
   'hero.title': `Luxury watch brokerage, built on trust.`,
@@ -533,6 +537,23 @@ function initMenu() {
   window.addEventListener('resize', () => { if (window.innerWidth >= 1100) closeMenu(false); });
 }
 
+// Menu déroulant « Contact » : s'ouvre au survol (CSS) ou au clic sur la flèche (clavier, tablette)
+function initDropdown() {
+  $$('.nav-drop').forEach(drop => {
+    const toggle = $('.nav-drop-toggle', drop);
+    const set = open => {
+      drop.classList.toggle('is-open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+    };
+    toggle.addEventListener('click', () => set(!drop.classList.contains('is-open')));
+    drop.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && drop.classList.contains('is-open')) { set(false); toggle.focus(); }
+    });
+    drop.addEventListener('focusout', e => { if (!drop.contains(e.relatedTarget)) set(false); });
+    document.addEventListener('click', e => { if (!drop.contains(e.target)) set(false); });
+  });
+}
+
 /* =====================================================================
    7. ONGLETS « VENDRE / TROUVER » (page Comment ça marche)
    ===================================================================== */
@@ -852,6 +873,7 @@ function init() {
   $$('[data-set-lang]').forEach(btn => btn.addEventListener('click', () => setLang(btn.dataset.setLang)));
 
   initMenu();
+  initDropdown();
   initTabs();
   initForms();
   initHeader();
