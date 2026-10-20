@@ -11,15 +11,19 @@
   SITE VITRINE — COURTAGE DE MONTRES DE LUXE (PARIS / ORLÉANS)
   =====================================================================
   Un fichier HTML par page. Ce qui est commun à toutes les pages est dans le dossier assets/ :
-  • assets/site.js   → nom de la marque, numéro WhatsApp, téléphones, e-mail, Instagram
+  • assets/site.js   → nom de la marque, numéro WhatsApp, téléphones, e-mail, Instagram, associés
                        (« 1. CONFIGURATION ») et textes anglais (« 2. TRADUCTIONS ANGLAISES »)
   Toutes les prises de contact passent par WhatsApp : les formulaires ouvrent
   WhatsApp avec la demande déjà rédigée.
   • assets/style.css → couleurs, polices, mise en page (« VARIABLES DE DESIGN »)
   • assets/logo.svg  → le logo : remplacez ce fichier (même nom) pour changer le logo partout
+  • assets/img/      → photos des associés et des montres : chaque emplacement indique en commentaire
+                       le nom de fichier attendu ; la photo s'affiche dès que le fichier est là.
   Les textes français sont écrits directement dans chaque page.
   Le menu et le pied de page sont répétés dans chaque fichier : si vous ajoutez une page,
   ajoutez son lien dans les 10 fichiers.
+  FAQ : en bas de cette page uniquement (anglais dans assets/site.js, clés « faq. »).
+  Associés : noms et numéros WhatsApp dans assets/site.js (accueil et À propos).
   =====================================================================
 -->
     <title>WATCH | Courtage de montres de luxe à Paris et Orléans</title>
@@ -590,6 +594,9 @@
         </div>
       </div>
 
+      <!-- PHOTO DE MONTRE : assets/img/montre-accueil.jpg (paysage, environ 2400 × 1100 px) -->
+      <figure class="photo photo-bleed"><img src="assets/img/montre-accueil.jpg" alt="" loading="lazy" decoding="async" /></figure>
+
       <!-- Points de confiance -->
       <div class="block block-tint">
         <div class="container">
@@ -632,8 +639,110 @@
         </div>
       </div>
 
+      <!-- Les associés (même présentation que sur la page À propos) -->
+      <div class="block partners-section">
+        <div class="container">
+          <div class="block-head reveal">
+            <h2 data-i18n="about.partners.title">Les associés</h2>
+            <p data-i18n="home.partners.lead">
+              Deux passionnés d’horlogerie, et vos interlocuteurs directs de la
+              première estimation à la remise en main propre.
+            </p>
+          </div>
+          <div class="partners">
+            <!-- ASSOCIÉ 1 : nom et WhatsApp dans assets/site.js (partner1Name, partner1Phone) ;
+                 rôle et présentation : mêmes textes que sur a-propos.html -->
+            <article class="partner reveal">
+              <div class="partner-photo photo">
+                <!-- PHOTO ASSOCIÉ 1 : assets/img/julesPdp.png (portrait ou carré), même fichier pour l'accueil
+                     et la page À propos. Tant qu'il manque, « Photo à venir » s'affiche. -->
+                <div class="photo-placeholder">
+                  <svg class="icon" aria-hidden="true">
+                    <use href="#icon-camera" />
+                  </svg>
+                  <span data-i18n="partner.photo">Photo à venir</span>
+                </div>
+                <img
+                  src="assets/img/julesPdp.png"
+                  alt="Jules COUEDELO"
+                  loading="lazy"
+                />
+              </div>
+              <h3 data-config="partner1Name">Jules COUEDELO</h3>
+              <p class="partner-role" data-i18n="partner1.role">Commercial</p>
+              <p class="partner-bio" data-i18n="partner1.bio">
+                [Courte présentation]
+              </p>
+              <a
+                class="partner-phone"
+                data-wa="partner1Phone"
+                href="https://wa.me/33600000001"
+                target="_blank"
+                rel="noopener"
+              >
+                <svg class="icon" aria-hidden="true">
+                  <use href="#icon-whatsapp" />
+                </svg>
+                <span
+                  ><span data-i18n="partner.direct">WhatsApp&nbsp;:</span>
+                  <span data-config="partner1Phone">06 72 46 97 89</span></span
+                >
+              </a>
+            </article>
+
+            <!-- ASSOCIÉ 2 : nom et WhatsApp dans assets/site.js (partner2Name, partner2Phone) ;
+                 rôle et présentation : mêmes textes que sur a-propos.html -->
+            <article class="partner reveal">
+              <div class="partner-photo photo">
+                <!-- PHOTO ASSOCIÉ 2 : assets/img/associe2Pdp.png (portrait ou carré), même fichier pour l'accueil
+                     et la page À propos. Tant qu'il manque, « Photo à venir » s'affiche. -->
+                <div class="photo-placeholder">
+                  <svg class="icon" aria-hidden="true">
+                    <use href="#icon-camera" />
+                  </svg>
+                  <span data-i18n="partner.photo">Photo à venir</span>
+                </div>
+                <img
+                  src="assets/img/associe2Pdp.png"
+                  alt=""
+                  loading="lazy"
+                />
+              </div>
+              <h3 data-config="partner2Name">[Prénom Nom]</h3>
+              <p class="partner-role" data-i18n="partner2.role">Commercial</p>
+              <p class="partner-bio" data-i18n="partner2.bio">
+                [Courte présentation]
+              </p>
+              <a
+                class="partner-phone"
+                data-wa="partner2Phone"
+                href="https://wa.me/33600000002"
+                target="_blank"
+                rel="noopener"
+              >
+                <svg class="icon" aria-hidden="true">
+                  <use href="#icon-whatsapp" />
+                </svg>
+                <span
+                  ><span data-i18n="partner.direct">WhatsApp&nbsp;:</span>
+                  <span data-config="partner2Phone">06 00 00 00 02</span></span
+                >
+              </a>
+            </article>
+          </div>
+          <div class="block-foot">
+            <a
+              class="text-link"
+              href="a-propos.html"
+              data-i18n="home.partners.link"
+              >Découvrir notre histoire</a
+            >
+          </div>
+        </div>
+      </div>
+
       <!-- Deux parcours -->
-      <div class="block">
+      <div class="block block-tint">
         <div class="container">
           <div class="block-head reveal">
             <h2 data-i18n="home.paths.title">Comment ça marche</h2>
@@ -681,6 +790,104 @@
                 >
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Questions fréquentes : volontairement courtes, pour inviter à écrire sur WhatsApp -->
+      <div class="block">
+        <div class="container faq-layout">
+          <div class="faq-intro reveal">
+            <h2 data-i18n="faq.title">Questions fréquentes</h2>
+            <p data-i18n="home.faq.lead">
+              Les réponses aux questions que l’on nous pose le plus souvent.
+            </p>
+            <p class="faq-more" data-i18n="faq.more">
+              Une autre question&nbsp;? Écrivez-nous sur
+              <a
+                data-wa
+                href="https://wa.me/33600000000"
+                target="_blank"
+                rel="noopener"
+                >WhatsApp</a
+              >.
+            </p>
+          </div>
+          <div class="faq-list reveal">
+            <details class="faq-item">
+              <summary data-i18n="faq.sell.free.q">
+                L’estimation est-elle payante&nbsp;?
+              </summary>
+              <div class="faq-a">
+                <p data-i18n="faq.sell.free.a">
+                  Non. La première estimation est gratuite et sans engagement.
+                  Envoyez-nous quelques photos de votre montre, sa référence et
+                  son année&nbsp;: nous revenons vers vous avec une première
+                  estimation et la formule la plus adaptée.
+                </p>
+              </div>
+            </details>
+            <details class="faq-item">
+              <summary data-i18n="faq.sell.brands.q">
+                Quelles montres prenez-vous en charge&nbsp;?
+              </summary>
+              <div class="faq-a">
+                <p data-i18n="faq.sell.brands.a">
+                  Toutes les montres de luxe, quelle que soit la maison. Les
+                  sacs et les bijoux ne font pas partie de nos services pour le
+                  moment.
+                </p>
+              </div>
+            </details>
+            <details class="faq-item">
+              <summary data-i18n="faq.sell.papers.q">
+                Ma montre n’a plus sa boîte ni ses papiers. Puis-je la
+                vendre&nbsp;?
+              </summary>
+              <div class="faq-a">
+                <p data-i18n="faq.sell.papers.a">
+                  Oui. La boîte et les papiers facilitent la vente et comptent
+                  dans l’estimation, mais ils ne sont pas indispensables. Dans
+                  tous les cas, la montre est authentifiée avant la vente.
+                </p>
+              </div>
+            </details>
+            <details class="faq-item">
+              <summary data-i18n="faq.fees.commission.q">
+                Quelle est votre commission&nbsp;?
+              </summary>
+              <div class="faq-a">
+                <p data-i18n="faq.fees.commission.a">
+                  Elle est établie sur devis, selon la montre et la formule
+                  choisie. Vous la connaissez avant tout engagement&nbsp;: elle
+                  est inscrite dans le mandat que nous signons ensemble.
+                </p>
+              </div>
+            </details>
+            <details class="faq-item">
+              <summary data-i18n="faq.trust.auth.q">
+                Comment les montres sont-elles authentifiées&nbsp;?
+              </summary>
+              <div class="faq-a">
+                <p data-i18n="faq.trust.auth.a">
+                  Chaque montre est contrôlée par un horloger partenaire ou par
+                  le service officiel de la marque, avant toute transaction et
+                  sans exception.
+                </p>
+              </div>
+            </details>
+            <details class="faq-item">
+              <summary data-i18n="faq.info.where.q">
+                Je n’habite ni à Paris ni à Orléans. Comment faire&nbsp;?
+              </summary>
+              <div class="faq-a">
+                <p data-i18n="faq.info.where.a">
+                  Les rendez-vous et les remises ont lieu à Paris ou à Orléans.
+                  Écrivez-nous&nbsp;: nous fixons ensemble un rendez-vous dans
+                  l’une de ces deux villes, selon vos disponibilités.
+                </p>
+              </div>
+            </details>
           </div>
         </div>
       </div>
@@ -780,6 +987,12 @@
           >
           <a href="mentions-legales.html" data-i18n="footer.legal"
             >Mentions légales et confidentialité</a
+          >
+          <span data-i18n="footer.credit"
+            >Réalisé par
+            <a href="https://felix-pm.fr" target="_blank" rel="noopener"
+              >FelixDev</a
+            ></span
           >
         </div>
       </div>

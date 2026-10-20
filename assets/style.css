@@ -283,6 +283,21 @@ strong { font-weight: 500; }
 .js .reveal { opacity: 0; transform: translateY(14px); transition: opacity 1s var(--ease), transform 1s var(--ease); }
 .js .reveal.is-visible { opacity: 1; transform: none; }
 
+/* ---------- Photos ----------
+   Les fichiers sont dans assets/img/ (le nom attendu est indiqué en commentaire à chaque emplacement).
+   Tant qu'un fichier manque, un fond neutre avec un cadran s'affiche ; la photo apparaît en fondu dès qu'elle est là. */
+.photo { position: relative; margin: 0; overflow: hidden; background: var(--paper-2); }
+.photo::before {
+  content: ""; position: absolute; left: 50%; top: 50%; width: 56px; height: 56px; transform: translate(-50%, -50%);
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' fill='none' stroke='%23C7BFB1' stroke-width='1' stroke-linecap='round'%3E%3Ccircle cx='32' cy='32' r='30'/%3E%3Ccircle cx='32' cy='32' r='26.5' stroke-width='.6'/%3E%3Cpath d='M32 8V12M56 32H52M32 56V52M8 32H12M32 32V16M32 32L42 38'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+.photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .8s var(--ease); }
+.photo.is-loaded img, .no-js .photo img { opacity: 1; }
+.photo-bleed { height: clamp(280px, 46vw, 620px); }                       /* accueil : toute la largeur */
+.photo-wide { aspect-ratio: 3 / 2; margin-top: 36px; }                    /* sous le titre des pages */
+@media (min-width: 768px) { .photo-wide { aspect-ratio: 16 / 7; margin-top: 52px; } }
+.photo-aside { aspect-ratio: 16 / 10; }                                   /* vendre / trouver */
+
 /* =====================================================================
    ACCUEIL
    ===================================================================== */
@@ -356,13 +371,25 @@ strong { font-weight: 500; }
 .story h2 { font-size: clamp(2rem, 5vw, 3.1rem); font-weight: 400; max-width: 14ch; }
 .story-text p { color: var(--ink-soft); max-width: 60ch; }
 .story-text p:last-child { margin-bottom: 0; }
-@media (min-width: 900px) { .story { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 64px; } }
+/* Ordinateur : titre sur toute la largeur, puis photo à gauche et texte à droite, centré sur la hauteur de la photo */
+@media (min-width: 900px) {
+  .story { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 40px 64px; align-items: center; }
+  .story h2 { grid-column: 1 / -1; }
+}
+.photo-story { aspect-ratio: 3 / 2; }
+@media (min-width: 900px) { .photo-story { aspect-ratio: 4 / 5; max-width: 380px; } }
 
 .partners { display: grid; gap: 56px; }
 @media (min-width: 720px) { .partners { grid-template-columns: 1fr 1fr; gap: 40px; } }
-@media (min-width: 1024px) { .partners { gap: 72px; } }
-.partner-photo { aspect-ratio: 4 / 5; background: var(--paper-2); border: 1px solid var(--line); margin-bottom: 26px; overflow: hidden; }
-.partner-photo img { width: 100%; height: 100%; object-fit: cover; }
+@media (min-width: 1024px) { .partners { grid-template-columns: repeat(2, minmax(0, 400px)); justify-content: center; gap: 72px; } }  /* photos limitées à 400 px de large sur ordinateur */
+/* Section associés (accueil et À propos) : titre, cartes et textes centrés */
+.partner { text-align: center; }
+.partner-bio { margin-left: auto; margin-right: auto; }
+.partners-section .block-head { justify-items: center; text-align: center; }
+.partners-section .block-foot { text-align: center; }
+@media (min-width: 900px) { .partners-section .block-head { grid-template-columns: minmax(0, 1fr); gap: 18px; } }
+.partner-photo { aspect-ratio: 4 / 5; border: 1px solid var(--line); margin-bottom: 26px; }
+.partner-photo.photo::before { content: none; }   /* l'emplacement associé a son propre texte « Photo à venir » */
 .photo-placeholder {
   height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;
   color: var(--muted); font-size: .86rem; letter-spacing: .02em;
@@ -567,6 +594,37 @@ strong { font-weight: 500; }
 .contact-form h2 { font-size: clamp(1.9rem, 4vw, 2.4rem); font-weight: 400; margin-bottom: 26px; }
 
 /* =====================================================================
+   FAQ — bas de l'accueil
+   Questions dépliables (<details>) : fonctionnent sans JavaScript.
+   ===================================================================== */
+.faq-layout { display: grid; gap: 32px; }
+@media (min-width: 900px) { .faq-layout { grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); gap: 64px; align-items: start; } }
+.faq-intro h2 { font-size: clamp(2rem, 5vw, 3.1rem); font-weight: 400; max-width: 14ch; }
+.faq-intro p { color: var(--ink-soft); max-width: 40ch; margin: 18px 0 0; }
+.faq-intro .faq-more { margin-top: 24px; font-size: .88rem; color: var(--muted); }
+.faq-more a { color: var(--ink); text-underline-offset: 4px; text-decoration-color: var(--gold); }
+
+.faq-list { border-top: 1px solid var(--ink); }
+.faq-item { border-bottom: 1px solid var(--line); }
+.faq-item summary {
+  position: relative; display: block; padding: 22px 44px 22px 0; cursor: pointer; list-style: none;
+  font-family: var(--serif); font-size: clamp(1.3rem, 3vw, 1.6rem); font-weight: 500; line-height: 1.2; color: var(--ink);
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::before, .faq-item summary::after {   /* signe + qui devient − à l'ouverture */
+  content: ""; position: absolute; right: 4px; top: 50%; width: 14px; height: 1px;
+  background: var(--gold-ink); transition: transform .35s var(--ease), background-color .3s var(--ease);
+}
+.faq-item summary::after { transform: rotate(90deg); }
+.faq-item[open] summary::after { transform: rotate(0deg); }
+.faq-item summary:hover::before, .faq-item summary:hover::after { background: var(--ink); }
+.faq-a { padding: 0 44px 26px 0; }
+.faq-a p { margin: 0; color: var(--ink-soft); max-width: 62ch; }
+.faq-item[open] .faq-a { animation: faq-in .45s var(--ease); }
+@keyframes faq-in { from { opacity: 0; transform: translateY(-4px); } }
+@media (min-width: 768px) { .faq-item summary { padding: 26px 56px 26px 0; } .faq-a { padding: 0 56px 30px 0; } }
+
+/* =====================================================================
    MENTIONS LÉGALES
    ===================================================================== */
 .legal { max-width: 760px; }
@@ -586,12 +644,13 @@ strong { font-weight: 500; }
 /* =====================================================================
    BANDEAU FINAL + PIED DE PAGE
    ===================================================================== */
-.cta-band { background: var(--night); color: var(--paper); padding: 72px 0; }
-.cta-band h2 { color: var(--paper); font-size: clamp(2.1rem, 6vw, 3.6rem); font-weight: 400; max-width: 16ch; }
-.cta-band p { color: rgba(248, 246, 241, .72); margin: 20px 0 34px; max-width: 46ch; }
+/* Bandeau final : centré sur la page */
+.cta-band { background: var(--night); color: var(--paper); padding: 52px 0; text-align: center; }
+.cta-band h2 { color: var(--paper); font-size: clamp(2.1rem, 6vw, 3.6rem); font-weight: 400; max-width: 36ch; margin: 0 auto; }
+.cta-band p { color: rgba(248, 246, 241, .72); margin: 20px auto 34px; max-width: 64ch; }
 .cta-band-actions { display: grid; gap: 12px; }
-@media (min-width: 560px) { .cta-band-actions { grid-auto-flow: column; justify-content: start; } }
-@media (min-width: 768px) { .cta-band { padding: 112px 0; } }
+@media (min-width: 560px) { .cta-band-actions { grid-auto-flow: column; justify-content: center; } }
+@media (min-width: 768px) { .cta-band { padding: 80px 0; } }
 
 .site-footer { background: var(--night); color: rgba(248, 246, 241, .74); font-size: .9rem; border-top: 1px solid rgba(248, 246, 241, .1); }
 .footer-main { display: grid; gap: 40px; padding: 56px 0 44px; }
@@ -603,7 +662,9 @@ strong { font-weight: 500; }
 .footer-links a { text-decoration: none; color: rgba(248, 246, 241, .86); transition: color .3s var(--ease); }
 .footer-links a:hover { color: var(--gold); }
 .footer-links a .icon { display: inline-block; vertical-align: -3px; margin-right: 8px; width: 16px; height: 16px; }
-.footer-bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 24px; padding: 22px 0 calc(26px + env(safe-area-inset-bottom)); border-top: 1px solid rgba(248, 246, 241, .1); font-size: .8rem; color: rgba(248, 246, 241, .55); }
+/* marge basse : la dernière ligne reste au-dessus du bouton WhatsApp flottant */
+.footer-bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 24px; padding: 22px 0 calc(84px + env(safe-area-inset-bottom)); border-top: 1px solid rgba(248, 246, 241, .1); font-size: .8rem; color: rgba(248, 246, 241, .55); }
+@media (min-width: 768px) { .footer-bottom { padding-bottom: calc(96px + env(safe-area-inset-bottom)); } }
 .footer-bottom a { color: rgba(248, 246, 241, .75); text-underline-offset: 3px; }
 .footer-bottom a:hover { color: var(--gold); }
 

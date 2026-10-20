@@ -23,9 +23,11 @@
     instagramUrl: "https://www.instagram.com/watch.exemple/",
     instagramHandle: "@watch.exemple",
 
-    // WhatsApp direct des associés (page À propos)
-    partner1Phone: "numéroJules",
-    partner2Phone: "numéroEvan",
+    // Associés (accueil et page À propos) : nom affiché et WhatsApp direct
+    partner1Name: "Jules COUEDELO",
+    partner1Phone: "06 72 46 97 89",
+    partner2Name: "[Prénom Nom]",
+    partner2Phone: "[numéroPote]",
 
     defaultLang: "fr",
   };
@@ -92,6 +94,9 @@
     "home.paths.find.t": `Looking for a watch`,
     "home.paths.find.d": `Describe the piece you have in mind: we find it, have it authenticated and hand it to you in person.`,
     "home.paths.find.link": `See the 5 steps`,
+    "home.partners.lead": `Two watch enthusiasts, and your direct contacts from the first valuation to the in-person handover.`,
+    "home.partners.link": `Read our story`,
+    "home.faq.lead": `Answers to the questions we are asked most often.`,
 
     // À propos
     "about.title": `About us`,
@@ -103,9 +108,9 @@
     "about.partners.title": `The partners`,
     "partner.photo": `Photo coming soon`,
     "partner.direct": `WhatsApp:`,
-    "partner1.role": `[Role]`,
+    "partner1.role": `Sales`,
     "partner1.bio": `[Short introduction]`,
-    "partner2.role": `[Role]`,
+    "partner2.role": `Sales`,
     "partner2.bio": `[Short introduction]`,
 
     // Services
@@ -270,6 +275,22 @@
     "contact.zones.text": `Paris and Orléans. Meetings are arranged together, at your convenience.`,
     "contact.form.title": `Write to us`,
 
+    // FAQ (bas de l'accueil)
+    "faq.title": `Frequently asked questions`,
+    "faq.more": `Another question? Message us on <a data-wa href="https://wa.me/33600000000" target="_blank" rel="noopener">WhatsApp</a>.`,
+    "faq.sell.free.q": `Is the valuation free?`,
+    "faq.sell.free.a": `Yes. The initial valuation is free and places you under no obligation. Send us a few photos of your watch, its reference and its year: we will come back to you with an initial valuation and the most suitable arrangement.`,
+    "faq.sell.brands.q": `Which watches do you handle?`,
+    "faq.sell.brands.a": `All luxury watches, whatever the maison. Handbags and jewellery are not part of our services for the time being.`,
+    "faq.sell.papers.q": `My watch no longer has its box or papers. Can I still sell it?`,
+    "faq.sell.papers.a": `Yes. The box and papers make a sale easier and count towards the valuation, but they are not essential. In every case, the watch is authenticated before the sale.`,
+    "faq.trust.auth.q": `How are the watches authenticated?`,
+    "faq.trust.auth.a": `Every watch is inspected by a partner watchmaker or by the brand’s official service, before any transaction and without exception.`,
+    "faq.fees.commission.q": `What is your commission?`,
+    "faq.fees.commission.a": `It is quoted case by case, depending on the watch and the arrangement chosen. You know it before committing to anything: it is written into the mandate we sign together.`,
+    "faq.info.where.q": `I live outside Paris and Orléans. What can I do?`,
+    "faq.info.where.a": `Meetings and handovers take place in Paris or Orléans. Message us: we will arrange a meeting in one of these two cities, at your convenience.`,
+
     // Mentions légales
     "legal.title": `Legal notice and privacy`,
     "legal.updated": `Last updated: [date]`,
@@ -310,6 +331,7 @@
     "footer.navTitle": `Navigation`,
     "footer.contactTitle": `Contact`,
     "footer.legal": `Legal notice and privacy`,
+    "footer.credit": `Website by <a href="https://felix-pm.fr" target="_blank" rel="noopener">FelixDev</a>`,
   };
 
   /* Textes générés par le script (messages d'erreur, titres d'onglet…), dans les deux langues */
@@ -945,6 +967,17 @@
     items.forEach((el) => io.observe(el));
   }
 
+  // Photos : apparaissent en fondu une fois chargées ; si le fichier manque, le fond neutre reste
+  function initPhotos() {
+    $$(".photo img").forEach((img) => {
+      const show = () => {
+        if (img.naturalWidth) img.closest(".photo").classList.add("is-loaded");
+      };
+      if (img.complete) show();
+      else img.addEventListener("load", show);
+    });
+  }
+
   function initHeader() {
     const header = $(".site-header");
     const onScroll = () =>
@@ -971,6 +1004,7 @@
     initForms();
     initHeader();
     initReveal();
+    initPhotos();
     initDial();
   }
 
