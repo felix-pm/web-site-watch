@@ -85,7 +85,7 @@
               <span class="nav-drop-title" data-i18n="cta.find">Trouver une montre</span>
               <span class="nav-drop-desc" data-i18n="nav.findDesc">Recherche dans notre réseau</span>
             </a>
-            <a class="nav-drop-foot" href="contact.html" data-i18n="nav.contactAll">Téléphone, WhatsApp ou e-mail →</a>
+            <a class="nav-drop-foot" data-wa href="https://wa.me/33600000000" target="_blank" rel="noopener" data-i18n="nav.contactAll">Nous écrire sur WhatsApp →</a>
           </div>
         </li>
       </ul>
@@ -151,23 +151,12 @@
     <div class="container form-layout">
       <div class="form-shell">
         <form class="form" data-form="sell" novalidate>
-          <input type="hidden" name="formulaire" value="Vendre ma montre">
-          <input type="text" name="_gotcha" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
-
           <fieldset>
-            <legend data-i18n="form.group.you">Vos coordonnées</legend>
+            <legend data-i18n="form.group.you">Vous</legend>
             <div class="fields">
-              <div class="field full">
+              <div class="field">
                 <label for="sell-name"><span data-i18n="form.name">Nom et prénom</span><span class="req" aria-hidden="true">*</span></label>
                 <input id="sell-name" name="nom" type="text" autocomplete="name" required>
-              </div>
-              <div class="field">
-                <label for="sell-phone"><span data-i18n="form.phone">Téléphone</span><span class="req" aria-hidden="true">*</span></label>
-                <input id="sell-phone" name="telephone" type="tel" inputmode="tel" autocomplete="tel" required>
-              </div>
-              <div class="field">
-                <label for="sell-email"><span data-i18n="form.email">E-mail</span><span class="req" aria-hidden="true">*</span></label>
-                <input id="sell-email" name="email" type="email" autocomplete="email" required>
               </div>
               <div class="field">
                 <label for="sell-city"><span data-i18n="form.city">Ville</span><span class="req" aria-hidden="true">*</span></label>
@@ -233,44 +222,27 @@
           <fieldset>
             <legend data-i18n="form.group.more">Photos et message</legend>
             <div class="fields">
-              <!-- Envoi de photos : voir CONFIG.allowPhotoUpload dans le script -->
-              <div class="field full" data-photo-field>
-                <span class="label" id="sell-photos-label"><span data-i18n="form.photos">Photos de la montre</span> <span class="opt" data-i18n="form.optional">(facultatif)</span></span>
-                <label class="dropzone" data-dropzone>
-                  <input type="file" id="sell-photos" name="photos" accept="image/*" multiple aria-labelledby="sell-photos-label" aria-describedby="sell-photos-hint">
-                  <svg class="icon" aria-hidden="true"><use href="#icon-camera"/></svg>
-                  <span class="dropzone-cta" data-i18n="form.photos.cta">Ajouter des photos</span>
-                  <span class="dropzone-sub" data-i18n="form.photos.drop">ou glissez-les ici</span>
-                </label>
-                <p class="hint" id="sell-photos-hint" data-i18n="form.photos.hint">Cadran, boîtier, fond et bracelet. <span data-config="maxPhotos">10</span> photos maximum.</p>
-                <ul class="file-list" aria-live="polite"></ul>
-              </div>
-              <p class="hint field full" data-photo-alt hidden data-i18n="form.photos.alt">Vous pourrez nous envoyer vos photos sur <a data-wa href="https://wa.me/33600000000" target="_blank" rel="noopener">WhatsApp</a> après votre demande.</p>
+              <p class="hint field full" data-i18n="form.photos.alt">Vous pourrez joindre des photos de votre montre directement dans WhatsApp.</p>
               <div class="field full">
                 <label for="sell-message"><span data-i18n="form.message">Message</span> <span class="opt" data-i18n="form.optional">(facultatif)</span></label>
                 <textarea id="sell-message" name="message" placeholder="Historique, révisions, accessoires, questions…" data-i18n-attr="placeholder:form.message.sell.ph"></textarea>
-              </div>
-              <div class="field full">
-                <label class="consent" for="sell-consent">
-                  <input type="checkbox" id="sell-consent" name="consentement_rgpd" value="Oui" required>
-                  <span data-i18n="form.consent">J’accepte que mes données soient utilisées par <span data-brand>WATCH</span> pour traiter ma demande, conformément à la <a href="mentions-legales.html">politique de confidentialité</a>. <span class="req">*</span></span>
-                </label>
               </div>
             </div>
           </fieldset>
 
           <div class="form-foot">
             <p class="required-note" data-i18n="form.requiredNote">Les champs marqués d’un astérisque (*) sont obligatoires.</p>
-            <p class="form-status" role="alert" hidden></p>
-            <button class="btn btn-primary" type="submit" data-i18n="form.submit.sell">Envoyer ma demande</button>
+            <p class="required-note" data-i18n="form.waHint">Le bouton ouvre WhatsApp avec votre demande déjà rédigée&nbsp;: il ne vous reste qu’à l’envoyer.</p>
+            <button class="btn btn-primary" type="submit"><svg class="icon" aria-hidden="true"><use href="#icon-whatsapp"/></svg><span data-i18n="form.submit.sell">Envoyer ma demande sur WhatsApp</span></button>
           </div>
         </form>
 
         <div class="form-success" tabindex="-1" hidden>
           <svg class="success-mark" viewBox="0 0 60 60" aria-hidden="true"><circle cx="30" cy="30" r="26"/><path d="M20 31 L27 38 L41 22"/></svg>
-          <h2 data-i18n="form.success.sell.t">Votre demande est envoyée.</h2>
-          <p data-i18n="form.success.sell.d">Merci. Nous étudions votre montre et revenons vers vous rapidement avec une première estimation.</p>
-          <button class="btn btn-ghost" type="button" data-form-again data-i18n="form.again">Faire une autre demande</button>
+          <h2 data-i18n="form.success.sell.t">Votre demande est prête.</h2>
+          <p data-i18n="form.success.sell.d">WhatsApp s’est ouvert avec votre message&nbsp;: il ne vous reste qu’à l’envoyer, en y joignant des photos de votre montre.</p>
+          <p class="form-success-retry" data-i18n="form.success.retry">WhatsApp ne s’est pas ouvert&nbsp;? <a data-wa-retry href="#" target="_blank" rel="noopener">Ouvrir WhatsApp</a></p>
+          <button class="btn btn-ghost" type="button" data-form-again data-i18n="form.again">Modifier ma demande</button>
         </div>
       </div>
 
@@ -287,8 +259,7 @@
         <div class="aside-direct">
           <h2 data-i18n="aside.direct.title">Vous préférez en parler&nbsp;?</h2>
           <div class="aside-direct-actions">
-            <a class="btn btn-ghost" data-tel="phone" href="tel:+33600000000"><svg class="icon" aria-hidden="true"><use href="#icon-phone"/></svg><span data-config="phone">06 00 00 00 00</span></a>
-            <a class="btn btn-ghost" data-wa href="https://wa.me/33600000000" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#icon-whatsapp"/></svg><span data-i18n="aside.direct.wa">WhatsApp</span></a>
+            <a class="btn btn-ghost" data-wa href="https://wa.me/33600000000" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#icon-whatsapp"/></svg><span data-i18n="aside.direct.wa">Nous écrire sur WhatsApp</span></a>
           </div>
         </div>
       </aside>
@@ -326,9 +297,7 @@
       <div>
         <p class="footer-title" data-i18n="footer.contactTitle">Contact</p>
         <ul class="footer-links">
-          <li><a data-tel="phone" href="tel:+33600000000"><svg class="icon" aria-hidden="true"><use href="#icon-phone"/></svg><span data-config="phone">06 00 00 00 00</span></a></li>
           <li><a data-wa href="https://wa.me/33600000000" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#icon-whatsapp"/></svg>WhatsApp</a></li>
-          <li><a data-mail href="mailto:contact@watch-exemple.fr"><svg class="icon" aria-hidden="true"><use href="#icon-mail"/></svg><span data-config="email">contact@watch-exemple.fr</span></a></li>
           <li><a data-insta href="https://www.instagram.com/watch.exemple/" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#icon-instagram"/></svg><span data-config="instagramHandle">@watch.exemple</span></a></li>
         </ul>
       </div>

@@ -11,9 +11,10 @@
   SITE VITRINE — COURTAGE DE MONTRES DE LUXE (PARIS / ORLÉANS)
   =====================================================================
   Un fichier HTML par page. Ce qui est commun à toutes les pages est dans le dossier assets/ :
-  • assets/site.js   → nom de la marque, téléphones, e-mail, Instagram, WhatsApp,
-                       adresses d'envoi des formulaires (« 1. CONFIGURATION »)
-                       et textes anglais (« 2. TRADUCTIONS ANGLAISES »)
+  • assets/site.js   → nom de la marque, numéro WhatsApp, téléphones, e-mail, Instagram
+                       (« 1. CONFIGURATION ») et textes anglais (« 2. TRADUCTIONS ANGLAISES »)
+  Toutes les prises de contact passent par WhatsApp : les formulaires ouvrent
+  WhatsApp avec la demande déjà rédigée.
   • assets/style.css → couleurs, polices, mise en page (« VARIABLES DE DESIGN »)
   • assets/logo.svg  → le logo : remplacez ce fichier (même nom) pour changer le logo partout
   Les textes français sont écrits directement dans chaque page.
@@ -195,9 +196,12 @@
                 </a>
                 <a
                   class="nav-drop-foot"
-                  href="contact.html"
+                  data-wa
+                  href="https://wa.me/33600000000"
+                  target="_blank"
+                  rel="noopener"
                   data-i18n="nav.contactAll"
-                  >Téléphone, WhatsApp ou e-mail →</a
+                  >Nous écrire sur WhatsApp →</a
                 >
               </div>
             </li>
@@ -375,11 +379,7 @@
               >
             </div>
             <p class="hero-note reveal" data-i18n="hero.note">
-              Une question&nbsp;? Appelez le
-              <a data-tel="phone" href="tel:+33600000000"
-                ><span data-config="phone">06 00 00 00 00</span></a
-              >
-              ou écrivez-nous sur
+              Une question&nbsp;? Écrivez-nous sur
               <a
                 data-wa
                 href="https://wa.me/33600000000"
@@ -750,13 +750,6 @@
             <p class="footer-title" data-i18n="footer.contactTitle">Contact</p>
             <ul class="footer-links">
               <li>
-                <a data-tel="phone" href="tel:+33600000000"
-                  ><svg class="icon" aria-hidden="true">
-                    <use href="#icon-phone" /></svg
-                  ><span data-config="phone">06 00 00 00 00</span></a
-                >
-              </li>
-              <li>
                 <a
                   data-wa
                   href="https://wa.me/33600000000"
@@ -765,13 +758,6 @@
                   ><svg class="icon" aria-hidden="true">
                     <use href="#icon-whatsapp" /></svg
                   >WhatsApp</a
-                >
-              </li>
-              <li>
-                <a data-mail href="mailto:contact@watch-exemple.fr"
-                  ><svg class="icon" aria-hidden="true">
-                    <use href="#icon-mail" /></svg
-                  ><span data-config="email">contact@watch-exemple.fr</span></a
                 >
               </li>
               <li>

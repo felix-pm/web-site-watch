@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "site",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "8123", "--bind", "127.0.0.1"],
+      "port": 8123
+    },
+    {
+      "name": "site-v2",
+      "runtimeExecutable": "cmd",
+      "runtimeArgs": ["/c", "cd /d C:\\Users\\fefe-\\Desktop\\claude-website\\web-site-watch_v2 && npx wrangler pages dev --port 8788 --ip 127.0.0.1"],
+      "port": 8788
+    }
+  ]
+}
