@@ -24,6 +24,8 @@
   ajoutez son lien dans les 10 fichiers.
   FAQ : en bas de cette page uniquement (anglais dans assets/site.js, clés « faq. »).
   Associés : noms et numéros WhatsApp dans assets/site.js (accueil et À propos).
+  Cache : après une modification de style.css ou site.js, augmentez le numéro « ?v= » de leurs
+  liens dans les 10 pages, sinon les navigateurs peuvent garder l'ancienne version quelques minutes.
   =====================================================================
 -->
     <title>WATCH | Courtage de montres de luxe à Paris et Orléans</title>
@@ -39,12 +41,12 @@
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="assets/style.css" />
+    <link rel="stylesheet" href="assets/style.css?v=2" />
     <script>
       document.documentElement.className =
         document.documentElement.className.replace("no-js", "js");
     </script>
-    <script src="assets/site.js" defer></script>
+    <script src="assets/site.js?v=2" defer></script>
   </head>
 
   <body data-page="accueil">
