@@ -26,7 +26,7 @@
     // Associés (accueil et page À propos) : nom affiché et WhatsApp direct
     partner1Name: "Jules COUEDELO",
     partner1Phone: "06 72 46 97 89",
-    partner2Name: "[Prénom Nom]",
+    partner2Name: "Ethane CRISTINA",
     partner2Phone: "[numéroPote]",
 
     defaultLang: "fr",
@@ -696,7 +696,9 @@
       );
       // le parcours masqué sur mobile n'est plus atteignable au clavier ni lu par les lecteurs d'écran
       buttons.forEach((btn) => {
-        const panel = document.getElementById(btn.getAttribute("aria-controls"));
+        const panel = document.getElementById(
+          btn.getAttribute("aria-controls"),
+        );
         panel.inert = mobile.matches && btn.dataset.show !== name;
       });
     };
