@@ -742,52 +742,81 @@
       </div>
 
       <!-- Deux parcours -->
-      <div class="block block-tint">
+      <div class="block block-tint paths-section">
         <div class="container">
           <div class="block-head reveal">
             <h2 data-i18n="home.paths.title">Comment ça marche</h2>
           </div>
-          <div class="paths reveal">
-            <div class="path">
-              <h3 data-i18n="home.paths.sell.t">Vous vendez une montre</h3>
-              <p data-i18n="home.paths.sell.d">
-                De la première estimation au versement, nous nous chargeons de
-                chaque étape.
-              </p>
-              <div class="path-actions">
-                <a
-                  class="btn btn-primary"
-                  href="vendre.html"
-                  data-i18n="cta.sell"
-                  >Vendre ma montre</a
-                >
-                <a
-                  class="text-link"
-                  href="comment-ca-marche.html#vendre"
-                  data-i18n="home.paths.sell.link"
-                  >Voir les 8 étapes</a
-                >
+          <!-- Mobile : un parcours à la fois ; les deux boutons (ou un glissement du doigt)
+               font défiler vendre ⇄ trouver. Sur ordinateur, les deux parcours sont côte à côte. -->
+          <div
+            class="paths-switch"
+            role="group"
+            aria-label="Parcours"
+            data-i18n-attr="aria-label:a11y.paths"
+          >
+            <button
+              type="button"
+              data-show="sell"
+              aria-controls="path-sell"
+              aria-pressed="true"
+              data-i18n="home.paths.tab.sell"
+            >
+              Je vends
+            </button>
+            <button
+              type="button"
+              data-show="find"
+              aria-controls="path-find"
+              aria-pressed="false"
+              data-i18n="home.paths.tab.find"
+            >
+              Je cherche
+            </button>
+          </div>
+          <div class="paths reveal" data-active="sell">
+            <div class="paths-track">
+              <div class="path" id="path-sell">
+                <h3 data-i18n="home.paths.sell.t">Vous vendez une montre</h3>
+                <p data-i18n="home.paths.sell.d">
+                  De la première estimation au versement, nous nous chargeons de
+                  chaque étape.
+                </p>
+                <div class="path-actions">
+                  <a
+                    class="btn btn-primary"
+                    href="vendre.html"
+                    data-i18n="cta.sell"
+                    >Vendre ma montre</a
+                  >
+                  <a
+                    class="text-link"
+                    href="comment-ca-marche.html#vendre"
+                    data-i18n="home.paths.sell.link"
+                    >Voir les 8 étapes</a
+                  >
+                </div>
               </div>
-            </div>
-            <div class="path">
-              <h3 data-i18n="home.paths.find.t">Vous cherchez une montre</h3>
-              <p data-i18n="home.paths.find.d">
-                Décrivez la pièce idéale&nbsp;: nous la trouvons, la faisons
-                authentifier et vous la remettons en main propre.
-              </p>
-              <div class="path-actions">
-                <a
-                  class="btn btn-ghost"
-                  href="trouver.html"
-                  data-i18n="cta.find"
-                  >Trouver une montre</a
-                >
-                <a
-                  class="text-link"
-                  href="comment-ca-marche.html#trouver"
-                  data-i18n="home.paths.find.link"
-                  >Voir les 5 étapes</a
-                >
+              <div class="path" id="path-find">
+                <h3 data-i18n="home.paths.find.t">Vous cherchez une montre</h3>
+                <p data-i18n="home.paths.find.d">
+                  Décrivez la pièce idéale&nbsp;: nous la trouvons, la faisons
+                  authentifier et vous la remettons en main propre.
+                </p>
+                <div class="path-actions">
+                  <a
+                    class="btn btn-ghost"
+                    href="trouver.html"
+                    data-i18n="cta.find"
+                    >Trouver une montre</a
+                  >
+                  <a
+                    class="text-link"
+                    href="comment-ca-marche.html#trouver"
+                    data-i18n="home.paths.find.link"
+                    >Voir les 5 étapes</a
+                  >
+                </div>
               </div>
             </div>
           </div>

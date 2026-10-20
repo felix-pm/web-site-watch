@@ -94,6 +94,8 @@
     "home.paths.find.t": `Looking for a watch`,
     "home.paths.find.d": `Describe the piece you have in mind: we find it, have it authenticated and hand it to you in person.`,
     "home.paths.find.link": `See the 5 steps`,
+    "home.paths.tab.sell": `I’m selling`,
+    "home.paths.tab.find": `I’m looking`,
     "home.partners.lead": `Two watch enthusiasts, and your direct contacts from the first valuation to the in-person handover.`,
     "home.partners.link": `Read our story`,
     "home.faq.lead": `Answers to the questions we are asked most often.`,
@@ -680,6 +682,51 @@
     if (initialTab) select(initialTab);
   }
 
+  // Accueil, « Comment ça marche » sur mobile : un parcours à la fois.
+  // Les boutons « Vendre / Trouver » (ou un glissement du doigt) font défiler l'un ou l'autre.
+  function initPathsSlider() {
+    const paths = $(".paths[data-active]");
+    if (!paths) return;
+    const buttons = $$("[data-show]");
+    const mobile = window.matchMedia("(max-width: 859px)");
+    const show = (name) => {
+      paths.dataset.active = name;
+      buttons.forEach((btn) =>
+        btn.setAttribute("aria-pressed", String(btn.dataset.show === name)),
+      );
+      // le parcours masqué sur mobile n'est plus atteignable au clavier ni lu par les lecteurs d'écran
+      buttons.forEach((btn) => {
+        const panel = document.getElementById(btn.getAttribute("aria-controls"));
+        panel.inert = mobile.matches && btn.dataset.show !== name;
+      });
+    };
+    buttons.forEach((btn) =>
+      btn.addEventListener("click", () => show(btn.dataset.show)),
+    );
+
+    let startX = null;
+    let startY = null;
+    paths.addEventListener(
+      "touchstart",
+      (e) => {
+        startX = e.touches[0].clientX;
+        startY = e.touches[0].clientY;
+      },
+      { passive: true },
+    );
+    paths.addEventListener("touchend", (e) => {
+      if (startX === null || !mobile.matches) return;
+      const dx = e.changedTouches[0].clientX - startX;
+      const dy = e.changedTouches[0].clientY - startY;
+      startX = null;
+      if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy))
+        show(dx < 0 ? "find" : "sell");
+    });
+
+    mobile.addEventListener("change", () => show(paths.dataset.active));
+    show(paths.dataset.active);
+  }
+
   /* =====================================================================
    8. FORMULAIRES : validation, envoi, confirmation
    ===================================================================== */
@@ -1001,6 +1048,7 @@
     initMenu();
     initDropdown();
     initTabs();
+    initPathsSlider();
     initForms();
     initHeader();
     initReveal();

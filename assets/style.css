@@ -351,15 +351,41 @@ strong { font-weight: 500; }
 .trust-point p { color: var(--ink-soft); margin: 0; max-width: 38ch; }
 @media (min-width: 860px) { .trust-points { grid-template-columns: repeat(3, 1fr); gap: 48px; } }
 
-/* Deux parcours (accueil) */
-.paths { display: grid; gap: 0; }
+/* Deux parcours (accueil) : côte à côte sur ordinateur ; sur mobile, un parcours à la fois,
+   que les deux boutons (ou un glissement du doigt) font défiler. Sans JavaScript : l'un sous l'autre. */
+.paths-track { display: grid; gap: 0; }
 .path { padding: 36px 0; border-top: 1px solid var(--line); }
 .path:first-child { border-top: 0; padding-top: 0; }
 .path h3 { font-size: clamp(1.9rem, 4vw, 2.5rem); font-weight: 400; margin-bottom: 14px; }
 .path p { color: var(--ink-soft); max-width: 42ch; }
 .path-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 20px 28px; margin-top: 26px; }
+/* Bascule « Je vends / Je cherche » : de simples onglets soulignés, pour ne pas ressembler aux boutons d'action */
+.paths-switch { display: flex; justify-content: center; gap: 32px; margin-bottom: 26px; border-bottom: 1px solid var(--line-strong); }
+.paths-switch button {
+  position: relative; padding: 6px 0 12px; background: none; border: 0; cursor: pointer;
+  font-family: var(--serif); font-size: 1.6rem; font-weight: 500; line-height: 1.1; color: var(--muted);
+  transition: color .3s var(--ease);
+}
+.paths-switch button::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; background: var(--gold);
+  transform: scaleX(0); transform-origin: left; transition: transform .4s var(--ease);
+}
+.paths-switch button[aria-pressed="true"] { color: var(--ink); }
+.paths-switch button[aria-pressed="true"]::after { transform: scaleX(1); }
+.no-js .paths-switch { display: none; }
+@media (max-width: 859px) {
+  .paths-section .block-head { justify-items: center; text-align: center; }
+  .js .path h3 {   /* le titre du parcours est déjà donné par l'onglet : masqué à l'écran, gardé pour les lecteurs d'écran */
+    position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
+  }
+  .js .paths { overflow: hidden; }
+  .js .paths-track { display: flex; transition: transform .5s var(--ease); touch-action: pan-y; }
+  .js .path { flex: 0 0 100%; min-width: 0; padding: 0; border-top: 0; }
+  .js .paths[data-active="find"] .paths-track { transform: translateX(-100%); }
+}
 @media (min-width: 860px) {
-  .paths { grid-template-columns: 1fr 1fr; }
+  .paths-switch { display: none; }
+  .paths-track { grid-template-columns: 1fr 1fr; }
   .path, .path:first-child { padding: 8px 0 8px 56px; border-top: 0; border-left: 1px solid var(--line); }
   .path:first-child { padding-left: 0; padding-right: 56px; border-left: 0; }
 }
